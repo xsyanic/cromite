@@ -97,6 +97,7 @@ Enable-darken-websites-checkbox-in-themes.patch
 Remove-blocklisted-URLs-upon-bookmark-creation.patch
 Disable-the-DIAL-repeating-discovery.patch
 Hardening-against-incognito-mode-detection.patch
+Disable-Incognito-mode.patch
 Restore-Simplified-NTP-launch.patch
 Add-option-to-use-home-page-as-NTP.patch
 Disable-text-fragments-by-default.patch

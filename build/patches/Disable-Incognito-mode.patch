@@ -1,0 +1,35 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: xsyanic <xsyanic@users.noreply.github.com>
+Date: Wed, 11 Nov 2026 00:00:00 +0000
+Subject: [PATCH] Disable Incognito mode
+
+---
+ chrome/browser/prefs/incognito_mode_prefs.cc | 19 +------------------
+ 1 file changed, 3 insertions(+), 16 deletions(-)
+
+diff --git a/chrome/browser/prefs/incognito_mode_prefs.cc b/chrome/browser/prefs/incognito_mode_prefs.cc
+--- a/chrome/browser/prefs/incognito_mode_prefs.cc
++++ b/chrome/browser/prefs/incognito_mode_prefs.cc
+@@ -129,19 +129,6 @@
+ // static
+ IncognitoModeAvailability IncognitoModePrefs::GetAvailabilityInternal(
+-    const PrefService* pref_service,
+-    GetAvailabilityMode mode) {
+-  DCHECK(pref_service);
+-  int pref_value = pref_service->GetInteger(
+-      policy::policy_prefs::kIncognitoModeAvailability);
+-  IncognitoModeAvailability result = kDefaultAvailability;
+-  bool valid = IntToAvailability(pref_value, &result);
+-  DCHECK(valid);
+-  if (result != IncognitoModeAvailability::kDisabled &&
+-      mode == CHECK_PARENTAL_CONTROLS && ArePlatformParentalControlsEnabled()) {
+-    if (result == IncognitoModeAvailability::kForced) {
+-      LOG(ERROR) << "Ignoring FORCED incognito. Parental control logging on";
+-    }
+-    return IncognitoModeAvailability::kDisabled;
+-  }
+-  return result;
++    const PrefService*,
++    GetAvailabilityMode) {
++  return IncognitoModeAvailability::kDisabled;
+ }
